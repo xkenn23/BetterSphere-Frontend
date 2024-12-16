@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import PublicLayout from "./layouts/PublicLayout";
 import { TechStack } from "./pages/TechStack";
-import heroBackground from "./assets/hero-background.jpg";
 
 function App() {
   return (

@@ -8,11 +8,11 @@ import heroDark from "../assets/hero-dark.jpg";
 const PublicLayout = () => {
   return (
     <div
-      className="bg-cover bg-center" // Add these classes for background styling
+      className="bg-cover bg-center flex flex-col flex-grow"
       style={{ backgroundImage: `url(${heroBackground})` }}
     >
       <Header />
-      <main className="bg-white/10">
+      <main className=" flex-grow ">
         <Outlet />
       </main>
       <Footer />
