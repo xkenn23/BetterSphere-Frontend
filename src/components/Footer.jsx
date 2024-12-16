@@ -1,14 +1,12 @@
 import React from "react";
-import BetterSphere from "../assets/BetterSphere.svg";
+import { PiCopyrightThin } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <div className="flex flex-row items-center justify-center w-full bg-yellow-400/30 p-5">
-      <ul className="flex flex-row gap-3 ">
-        <li className="hover:scale-110">About</li>
-        <li className="hover:scale-110">Contact</li>
-        <li className="hover:scale-110">Tech Stack</li>
-      </ul>
+    <div className="flex flex-row items-center justify-center px-5 py-2 w-full bg-white/85 border-t-[1px] border-black">
+      <p className="flex flex-row items-center justify-center gap-x-1 font-serif font-light">
+        <PiCopyrightThin size={20} /> 2024 Gonzales Ervin
+      </p>
     </div>
   );
 };

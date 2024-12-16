@@ -1,13 +1,21 @@
-import Footer from "./components/Footer";
-import Header from "./components/header";
-import HeroSection from "./components/HeroSection";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import PublicLayout from "./layouts/PublicLayout";
+import { TechStack } from "./pages/TechStack";
+import heroBackground from "./assets/hero-background.jpg";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <HeroSection />
-      <Footer />
+    <div>
+      {/* <Home /> */}
+      <Routes>
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="tech" element={<TechStack />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
