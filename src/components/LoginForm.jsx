@@ -51,6 +51,7 @@ const LoginForm = () => {
 
       if (response.ok) {
         const data = await response.json(); // Assuming your API sends back a token
+        console.log("Login response:", data); // Log the response data
         Cookies.set("jwt", data.token, {
           httpOnly: true,
           secure: true, // Set to true if using HTTPS
@@ -62,6 +63,7 @@ const LoginForm = () => {
         navigate("/dashboard"); // Redirect to dashboard
       } else {
         const errorData = await response.json();
+
         toast.error(
           `Login failed: ${errorData.message || "Invalid credentials"}`
         );
