@@ -4,8 +4,8 @@ import About from "./pages/About";
 import PublicLayout from "./layouts/PublicLayout";
 import { TechStack } from "./pages/TechStack";
 import Contact from "./pages/Contact";
-import Login from "./auth/login";
-import Register from "./auth/register";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 
