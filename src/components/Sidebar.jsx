@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { BsThreeDotsVertical as Options } from "react-icons/bs";
 import { Link } from "react-router-dom"; // Import Link
-import UserContext from "@/context/usercontext";
+import UserContext from "@/context/UserContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useForm } from "react-hook-form"; // Import useForm
 import { z } from "zod";
@@ -99,7 +99,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="h-full w-[300px] p-10 relative border-[1px] bg-clip-padding 
+      className="h-full w-[300px] p-5 relative border-[1px] bg-clip-padding 
         backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 border-black/30 mt-5 rounded-lg"
     >
       <h1 className="my-5">{user ? user.username : "Loading..."}</h1>
