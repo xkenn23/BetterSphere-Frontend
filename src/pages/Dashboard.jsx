@@ -1,3 +1,4 @@
+import ActivityCard from "@/components/ActivityCard";
 import ActivityForm from "@/components/ActivityForm";
 import React from "react";
 

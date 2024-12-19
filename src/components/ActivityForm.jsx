@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -36,8 +37,8 @@ const formSchema = z.object({
 
 export default function ActivityForm() {
   const createActivityEndpoint = `${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/activity/create`;
-  const token = localStorage.getItem("jwt"); // Retrieve token
-  console.log(token);
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -51,22 +52,25 @@ export default function ActivityForm() {
 
   async function onSubmit(values) {
     try {
-      const formData = new FormData();
-      formData.append("title", values.title);
-      formData.append("description", values.description || "");
-      formData.append("category", values.category);
-      formData.append("visibility", values.visibility);
-      if (values.bannerImage) {
-        formData.append("file", values.bannerImage);
-      }
+      const token = JSON.parse(localStorage.getItem("loginResponse")).token;
 
       const response = await fetch(createActivityEndpoint, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: values.title,
+          description: values.description || "",
+          category: values.category,
+          visibility: values.visibility,
+        }),
       });
 
       if (response.ok) {
         console.log("Activity created successfully!");
+        navigate("/dashboard"); // Redirect to dashboard
       } else {
         const errorData = await response.json();
         console.error("Error creating activity:", errorData);
@@ -75,16 +79,17 @@ export default function ActivityForm() {
       console.error("Error creating activity:", error);
     }
   }
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
 
   return (
-    <div className="bg-black/30 p-10 w-[50%] rounded-lg border border-[#bf9b30]">
+    <div
+      className=" p-10 w-[50%] bg-clip-padding 
+        backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 rounded-lg border border-[#bf9b30]"
+    >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 font-serif text-xl font-bold"
+        >
           <FormField
             control={form.control}
             name="title"
@@ -151,28 +156,7 @@ export default function ActivityForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="bannerImage"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Banner Image</FormLabel>
-                <FormControl>
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) =>
-                      field.onChange(e.target.files ? e.target.files[0] : null)
-                    }
-                  />
-                </FormControl>
-                <FormDescription>
-                  Upload an image for your activity banner.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <Button type="submit">Create Activity</Button>
         </form>
       </Form>

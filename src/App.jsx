@@ -8,6 +8,8 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
+import { UserProvider } from "./context/UserContext";
+import DashboardHome from "./pages/DashboardHome";
 
 function App() {
   return (
@@ -23,8 +25,16 @@ function App() {
           <Route path="register" element={<Register />} />
         </Route>
 
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<Dashboard />} />
+        <Route
+          path="/dashboard/"
+          element={
+            <UserProvider>
+              <DashboardLayout />
+            </UserProvider>
+          }
+        >
+          <Route index element={<DashboardHome />} />
+          <Route path="create" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>

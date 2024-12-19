@@ -52,13 +52,8 @@ const LoginForm = () => {
       if (response.ok) {
         const data = await response.json(); // Assuming your API sends back a token
         console.log("Login response:", data); // Log the response data
-        Cookies.set("jwt", data.token, {
-          httpOnly: true,
-          secure: true, // Set to true if using HTTPS
-          sameSite: "strict", // Prevent CSRF attacks
-        });
-        // Optionally store user data in local storage or a context
-        localStorage.setItem("user", JSON.stringify(data.user));
+
+        localStorage.setItem("loginResponse", JSON.stringify(data));
         toast.success("Login successful!");
         navigate("/dashboard"); // Redirect to dashboard
       } else {

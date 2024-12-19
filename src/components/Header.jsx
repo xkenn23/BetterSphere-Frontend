@@ -11,7 +11,10 @@ import {
 import { GiHamburgerMenu } from "react-icons/gi";
 const Header = () => {
   return (
-    <div className=" bg-white/85 border-b-[1px] border-black  md:px-16 p-5 items-center w-full">
+    <div
+      className=" bg-white/85 border-b-[1px] border-black bg-clip-padding 
+        backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 md:px-16 p-5 items-center w-full"
+    >
       <div className=" flex flex-row items-center justify-between w-full">
         <Link to="/">
           <img src={BetterSphere} alt="My Image" className="w-[150px]" />
@@ -25,7 +28,7 @@ const Header = () => {
             <Link to="/contact">Contact </Link>
           </li>
           <li className="hover:scale-110 hover:text-[#bf9b30] transition ease-in-out delay-50 font-serif font-light">
-            <Link to="/tech">Tech Stack </Link>
+            <Link to="/register">Register</Link>
           </li>
         </ul>
 

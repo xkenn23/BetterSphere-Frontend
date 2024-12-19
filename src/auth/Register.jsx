@@ -15,7 +15,7 @@ const Register = () => {
           <img
             src={contact}
             alt="Image Description"
-            className="w-full h-full object-cover hidden lg:block"
+            className="w-[70%] h-full object-cover hidden lg:block"
           />
         </div>
       </div>
