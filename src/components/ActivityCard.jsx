@@ -42,7 +42,18 @@ const ActivityCard = ({ activity }) => {
 
       <div>
         <h1>Owner: {activity?.owner?.username || "Unknown"}</h1>
-        <h1>Member: {/* Add logic to display members if needed */}</h1>
+        <h1>
+          Members:{" "}
+          {activity?.invitees?.length > 0 ? (
+            <ul>
+              {activity.invitees.map((invitee) => (
+                <li key={invitee._id}> • {invitee.username}</li>
+              ))}
+            </ul>
+          ) : (
+            "No members yet"
+          )}
+        </h1>
       </div>
     </div>
   );

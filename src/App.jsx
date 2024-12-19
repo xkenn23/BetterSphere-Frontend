@@ -10,6 +10,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import { UserProvider } from "./context/UserContext";
 import DashboardHome from "./pages/DashboardHome";
+import UpdateActivityPage from "./pages/UpdateActivityPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         >
           <Route index element={<DashboardHome />} />
           <Route path="create" element={<Dashboard />} />
+          <Route path="update/:id" element={<UpdateActivityPage />} />
         </Route>
       </Routes>
     </div>

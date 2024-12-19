@@ -18,15 +18,17 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 // const formschema = z.object({
-//   email: z.string().min(5, {
-//     referralcode: "Please enter a valid email",
+//   referralcode: z.string().min(5, {
+//     message: "Please enter a valid email",
 //   }),
 // });
 
 const Sidebar = () => {
   const { user, activities, setActivities } = useContext(UserContext);
+  const navigate = useNavigate();
   // const [isSubmitting, setIsSubmitting] = useState(false);
 
   // console.log(useContext(UserContext));
@@ -145,7 +147,12 @@ const Sidebar = () => {
                     // onClick={() => handleDeleteActivity(activity._id)} // Call handleDeleteActivity
                     className="cursor-pointer p-15 text-sm space-y-2"
                   >
-                    <h2 className="px-2 hover:text-[#bf9b30] ">Update</h2>
+                    <h2
+                      onClick={() => navigate(`update/${activity._id}`)} // Correct path
+                      className="px-2 hover:text-[#bf9b30]"
+                    >
+                      Update
+                    </h2>
                     <div className="border border-black/30" />
                     <h2
                       onClick={() => handleDeleteActivity(activity._id)}

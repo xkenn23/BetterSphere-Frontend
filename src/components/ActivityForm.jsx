@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,28 +20,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
+  title: z.string().min(2, { message: "Title must be at least 2 characters." }),
   description: z.string().optional(),
-  category: z.string().min(2, {
-    message: "Category must be at least 2 characters.",
-  }),
+  category: z
+    .string()
+    .min(2, { message: "Category must be at least 2 characters." }),
   visibility: z.enum(["public", "private"]),
-  bannerImage: z.instanceof(File).optional(),
 });
 
-export default function ActivityForm() {
-  const createActivityEndpoint = `${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/activity/create`;
-
-  const navigate = useNavigate(); // Initialize useNavigate
-
+export default function ActivityForm({ initialValues, onSubmitHandler }) {
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialValues || {
       title: "",
       description: "",
       category: "",
@@ -50,41 +41,18 @@ export default function ActivityForm() {
     },
   });
 
-  async function onSubmit(values) {
-    try {
-      const token = JSON.parse(localStorage.getItem("loginResponse")).token;
-
-      const response = await fetch(createActivityEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          title: values.title,
-          description: values.description || "",
-          category: values.category,
-          visibility: values.visibility,
-        }),
-      });
-
-      if (response.ok) {
-        console.log("Activity created successfully!");
-        navigate("/dashboard"); // Redirect to dashboard
-      } else {
-        const errorData = await response.json();
-        console.error("Error creating activity:", errorData);
-      }
-    } catch (error) {
-      console.error("Error creating activity:", error);
+  useEffect(() => {
+    if (initialValues) {
+      form.reset(initialValues); // Reset form with initial values when they change
     }
-  }
+  }, [initialValues, form]);
+
+  const onSubmit = (values) => {
+    onSubmitHandler(values); // Pass form data to parent handler
+  };
 
   return (
-    <div
-      className=" p-10 w-[50%] bg-clip-padding 
-        backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 rounded-lg border border-[#bf9b30]"
-    >
+    <div className="p-10 w-[50%] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 rounded-lg border border-[#bf9b30]">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -156,8 +124,9 @@ export default function ActivityForm() {
               </FormItem>
             )}
           />
-
-          <Button type="submit">Create Activity</Button>
+          <Button type="submit">
+            {initialValues ? "Update Activity" : "Create Activity"}
+          </Button>
         </form>
       </Form>
     </div>
