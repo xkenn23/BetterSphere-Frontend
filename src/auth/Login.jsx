@@ -1,6 +1,6 @@
 import LoginForm from "@/components/LoginForm";
 import React from "react";
-import contact from "../assets/contact.jpg";
+import contact from "../assets/login1.webp";
 
 const Login = () => {
   return (
@@ -15,7 +15,7 @@ const Login = () => {
           <img
             src={contact}
             alt="Image Description"
-            className="w-full h-full object-cover hidden lg:block"
+            className="w-[70%] h-full object-cover hidden lg:block"
           />
         </div>
       </div>

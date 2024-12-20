@@ -2,7 +2,7 @@ import DashbaordHeader from "@/components/DashbaordHeader";
 import Sidebar from "@/components/Sidebar";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import heroBackground from "../assets/hero-background.jpg";
+import heroBackground from "../assets/hero-background.webp";
 const DashboardLayout = () => {
   return (
     <div

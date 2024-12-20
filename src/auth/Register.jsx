@@ -1,6 +1,6 @@
 import RegisterForm from "@/components/RegisterForm";
 import React from "react";
-import contact from "../assets/contact.jpg";
+import contact from "../assets/contact.webp";
 
 const Register = () => {
   return (

@@ -47,7 +47,7 @@ const ActivityCard = ({ activity }) => {
           {activity?.invitees?.length > 0 ? (
             <ul>
               {activity.invitees.map((invitee) => (
-                <li key={invitee._id}> • {invitee.username}</li>
+                <li key={invitee._id}> • {invitee.user.username}</li>
               ))}
             </ul>
           ) : (

@@ -19,6 +19,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 // const formschema = z.object({
 //   referralcode: z.string().min(5, {
@@ -104,7 +105,12 @@ const Sidebar = () => {
       className="h-full w-[300px] p-5 relative border-[1px] bg-clip-padding 
         backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-0 backdrop-contrast-100 border-black/30 mt-5 rounded-lg"
     >
-      <h1 className="my-5">{user ? user.username : "Loading..."}</h1>
+      <div className="flex flex-row items-center justify-between">
+        <h1 className="my-5">{user ? user.username : "Loading..."}</h1>
+        <Link to="/dashboard">
+          <FaHome size={20} />
+        </Link>
+      </div>
 
       <div className="border border-black" />
 
@@ -132,7 +138,7 @@ const Sidebar = () => {
               className="flex items-center justify-between"
             >
               <Link
-                to={`/activity/${activity._id}`}
+                to={`/dashboard/activity/${activity._id}`} // Update the Link path
                 className="text-sm py-2 hover:bg-gray-100 rounded-md px-2"
               >
                 {activity.title}

@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import { UserProvider } from "./context/UserContext";
 import DashboardHome from "./pages/DashboardHome";
 import UpdateActivityPage from "./pages/UpdateActivityPage";
+import Activity from "./pages/Activity";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<DashboardHome />} />
           <Route path="create" element={<Dashboard />} />
           <Route path="update/:id" element={<UpdateActivityPage />} />
+          <Route path="activity/:activityId" element={<Activity />} />
         </Route>
       </Routes>
     </div>
