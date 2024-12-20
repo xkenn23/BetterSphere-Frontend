@@ -125,7 +125,7 @@ const RegisterForm = () => {
       </Form>
 
       <div className="my-2 flex flex-row space-x-2">
-        <h2 className="text-sm">Login Here!</h2>
+        {/* <h2 className="text-sm">Login Here!</h2> */}
       </div>
     </div>
   );
